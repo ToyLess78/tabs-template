@@ -3,7 +3,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import styles from "./Select.module.scss";
 
 interface SelectProps {
-	options: Array<{ label: string; Icon: React.ElementType }>;
+	options: Array<{ label: string; Icon?: React.ElementType }>;
 	onTogglePin: (label: string) => void;
 }
 
@@ -22,15 +22,13 @@ export const Select: React.FC<SelectProps> = ({ options, onTogglePin }) => {
 			{isOpen && (
 				<div className={styles.dropdownMenu}>
 					{options.map((option) => (
-						<div key={option.label} className={styles.dropdownItem}>
-							<option.Icon className={styles.icon} />
+						<div
+							key={option.label}
+							className={styles.dropdownItem}
+							onClick={() => onTogglePin(option.label)}
+						>
+							{option.Icon && <option.Icon className={styles.icon} />}
 							<span>{option.label}</span>
-							<button
-								className={styles.toggleButton}
-								onClick={() => onTogglePin(option.label)}
-							>
-								✖
-							</button>
 						</div>
 					))}
 				</div>

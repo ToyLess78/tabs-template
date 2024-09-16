@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styles from "./Tab.module.scss";
 
 interface TabProps {
@@ -5,23 +6,22 @@ interface TabProps {
 	isActive: boolean;
 	onClick: () => void;
 	Icon: React.ElementType;
-	isPinned?: boolean;
 }
 
-export const Tab: React.FC<TabProps> = ({
-	label,
-	isActive,
-	onClick,
-	Icon,
-	isPinned,
-}) => {
-	return (
-		<div
-			className={`${styles.tab} ${isActive ? styles.active : ""} ${isPinned ? styles.pinned : ""}`}
-			onClick={onClick}
-		>
-			<Icon className={styles.icon} />
-			{label && <span>{label}</span>}
-		</div>
-	);
-};
+export const Tab = forwardRef<HTMLDivElement, TabProps>(
+	({ label, isActive, onClick, Icon }, ref) => {
+		return (
+			<div
+				ref={ref}
+				data-label={label}
+				className={`${styles.tab} ${isActive ? styles.active : ""}`}
+				onClick={onClick}
+			>
+				<Icon className={styles.icon} />
+				<span>{label}</span>
+			</div>
+		);
+	},
+);
+
+Tab.displayName = "Tab";
