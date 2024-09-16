@@ -1,19 +1,22 @@
 .tabsNavigation {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
-.tabsContainer {
+.pinnedTabsContainer {
+  display: flex;
+  margin-right: 16px;
+}
+
+.unpinnedTabsContainer {
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
-  padding: 8px 0;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
-.tabsContainer::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+.unpinnedTabsContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
@@ -26,32 +29,4 @@
 .tab.active {
   font-weight: bold;
   border-bottom: 2px solid #007bff;
-}
-
-.dropdownContainer {
-  position: relative;
-}
-
-.dropdownButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.dropdownMenu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdownMenu .tab {
-  margin-right: 0;
-  padding: 8px;
-  cursor: pointer;
 }

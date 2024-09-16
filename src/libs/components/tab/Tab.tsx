@@ -5,16 +5,23 @@ interface TabProps {
 	isActive: boolean;
 	onClick: () => void;
 	Icon: React.ElementType;
+	isPinned?: boolean;
 }
 
-export const Tab: React.FC<TabProps> = ({ label, isActive, onClick, Icon }) => {
+export const Tab: React.FC<TabProps> = ({
+	label,
+	isActive,
+	onClick,
+	Icon,
+	isPinned,
+}) => {
 	return (
 		<div
-			className={`${styles.tab} ${isActive ? styles.active : ""}`}
+			className={`${styles.tab} ${isActive ? styles.active : ""} ${isPinned ? styles.pinned : ""}`}
 			onClick={onClick}
 		>
 			<Icon className={styles.icon} />
-			<span>{label}</span>
+			{label && <span>{label}</span>}
 		</div>
 	);
 };
