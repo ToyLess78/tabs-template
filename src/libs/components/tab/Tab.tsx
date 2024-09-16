@@ -1,4 +1,6 @@
 import { forwardRef } from "react";
+import { SlPin } from "react-icons/sl";
+import { TiDeleteOutline } from "react-icons/ti";
 import styles from "./Tab.module.scss";
 
 interface TabProps {
@@ -6,10 +8,12 @@ interface TabProps {
 	isActive: boolean;
 	onClick: () => void;
 	Icon: React.ElementType;
+	isPinned: boolean;
+	showActionIcon?: boolean;
 }
 
 export const Tab = forwardRef<HTMLDivElement, TabProps>(
-	({ label, isActive, onClick, Icon }, ref) => {
+	({ label, isActive, onClick, Icon, isPinned, showActionIcon }, ref) => {
 		return (
 			<div
 				ref={ref}
@@ -19,6 +23,12 @@ export const Tab = forwardRef<HTMLDivElement, TabProps>(
 			>
 				<Icon className={styles.icon} />
 				<span>{label}</span>
+				{showActionIcon &&
+					(!isPinned ? (
+						<SlPin size={16} className={styles.iconAction} />
+					) : (
+						<TiDeleteOutline className={styles.iconAction} />
+					))}
 			</div>
 		);
 	},

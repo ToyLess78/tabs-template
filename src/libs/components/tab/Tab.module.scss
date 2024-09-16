@@ -6,9 +6,15 @@
   cursor: pointer;
   transition: all 0.5s;
   background-color: rgba(255, 255, 255, 0.87);
+  position: relative;
 
   &:hover {
     background-color: rgba(174, 182, 206, 0.2);
+
+    .iconAction {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
 
@@ -27,13 +33,14 @@
   background-color: rgba(174, 182, 206, 0.2);
   margin-right: 0;
 }
-.pinButton {
-  margin-left: auto;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
 
-.pinned {
-  /* Styles for the pinned state, such as a different button color */
+.iconAction {
+  margin-left: auto;
+  padding-left: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  color: gray;
+  opacity: 0;
+  visibility: hidden;
 }

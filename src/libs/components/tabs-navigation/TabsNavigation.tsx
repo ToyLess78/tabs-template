@@ -56,6 +56,8 @@ export const TabsNavigation: React.FC = () => {
 						Icon={tab.Icon}
 						isActive={activeTab === tab.label}
 						onClick={() => handleTabClick(tab.path, tab.label)}
+						isPinned={true}
+						showActionIcon={false}
 					/>
 				))}
 			</div>
@@ -71,6 +73,8 @@ export const TabsNavigation: React.FC = () => {
 							if (el) tabRefs.current[tab.label] = el;
 						}}
 						data-label={tab.label}
+						isPinned={pinnedTabs.includes(tab.label)}
+						showActionIcon={true}
 					/>
 				))}
 			</div>
