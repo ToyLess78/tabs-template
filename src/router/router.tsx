@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Layout } from "../libs/components/components";
 import { AppRoute, TabName } from "../libs/enums/enums";
-import pages from "../pages/pages";
+import { pages } from "../pages/pages";
 
 export const router = createBrowserRouter([
 	{
