@@ -23,9 +23,6 @@ export const TabsNavigation: React.FC = () => {
 	});
 
 	const pinnedTabsList = tabs.filter((tab) => pinnedTabs.includes(tab.label));
-	const unpinnedTabsList = tabs.filter(
-		(tab) => !pinnedTabs.includes(tab.label),
-	);
 
 	const handleTabClick = (path: string, label: string) => {
 		setActiveTab(label);
@@ -66,7 +63,7 @@ export const TabsNavigation: React.FC = () => {
 		return () => {
 			observer.disconnect();
 		};
-	}, [unpinnedTabsList.length, hiddenTabs]);
+	}, [tabs.length, hiddenTabs]);
 
 	useEffect(() => {
 		console.log("Hidden tabs:", Array.from(hiddenTabs));
@@ -92,8 +89,8 @@ export const TabsNavigation: React.FC = () => {
 					/>
 				))}
 			</div>
-			<div className={styles.unpinnedTabsContainer}>
-				{unpinnedTabsList.map((tab) => (
+			<div className={styles.allTabsContainer}>
+				{tabs.map((tab) => (
 					<Tab
 						key={tab.label}
 						label={tab.label}

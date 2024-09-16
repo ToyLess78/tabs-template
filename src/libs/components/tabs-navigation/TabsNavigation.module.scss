@@ -8,14 +8,14 @@
   margin-right: 16px;
 }
 
-.unpinnedTabsContainer {
+.allTabsContainer {
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
 }
 
-.unpinnedTabsContainer::-webkit-scrollbar {
+.allTabsContainer::-webkit-scrollbar {
   display: none;
 }
 
