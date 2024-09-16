@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppRoute, TabName, TabNameToIcon } from "../../enums/enums";
-import { Tab } from "../tab/Tab";
+import { Select, Tab } from "../components";
 import styles from "./TabsNavigation.module.scss";
 
 export const TabsNavigation: React.FC = () => {
@@ -21,6 +21,9 @@ export const TabsNavigation: React.FC = () => {
 	});
 
 	const pinnedTabsList = tabs.filter((tab) => pinnedTabs.includes(tab.label));
+	const unpinnedTabsList = tabs.filter(
+		(tab) => !pinnedTabs.includes(tab.label),
+	);
 
 	const handleTabClick = (path: string, label: string) => {
 		setActiveTab(label);
@@ -60,6 +63,7 @@ export const TabsNavigation: React.FC = () => {
 					/>
 				))}
 			</div>
+			<Select options={unpinnedTabsList} onTogglePin={handlePinToggle} />
 		</div>
 	);
 };

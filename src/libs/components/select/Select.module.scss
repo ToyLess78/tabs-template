@@ -1,0 +1,48 @@
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdownButton {
+  color: #333;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: red;
+}
