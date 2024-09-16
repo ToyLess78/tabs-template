@@ -86,6 +86,7 @@ export const TabsNavigation: React.FC = () => {
 					}>
 				}
 				onTogglePin={handlePinToggle}
+				pinnedTabs={pinnedTabs}
 			/>
 		</div>
 	);

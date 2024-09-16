@@ -22,7 +22,7 @@ export const Tab = forwardRef<HTMLDivElement, TabProps>(
 				onClick={onClick}
 			>
 				<Icon className={styles.icon} />
-				<span>{label}</span>
+				<span className={styles.label}>{label}</span>
 				{showActionIcon &&
 					(!isPinned ? (
 						<SlPin size={16} className={styles.iconAction} />
