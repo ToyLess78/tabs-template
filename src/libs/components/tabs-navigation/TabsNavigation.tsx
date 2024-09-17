@@ -39,7 +39,10 @@ export const TabsNavigation: React.FC = () => {
 		);
 	};
 
+	const visibleTabs = tabs.filter((tab) => tab.label !== activeTab);
+
 	const hiddenTabsOptions = Array.from(hiddenTabs)
+		.filter((label) => label !== activeTab)
 		.map((label) => {
 			const tab = tabs.find((tab) => tab.label === label);
 			return tab ? { label: tab.label, Icon: tab.Icon } : null;
@@ -62,7 +65,7 @@ export const TabsNavigation: React.FC = () => {
 				))}
 			</div>
 			<div className={styles.allTabsContainer}>
-				{tabs.map((tab) => (
+				{visibleTabs.map((tab) => (
 					<Tab
 						key={tab.label}
 						label={tab.label}
