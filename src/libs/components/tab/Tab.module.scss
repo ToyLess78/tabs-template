@@ -1,6 +1,7 @@
 .tab {
   display: flex;
   align-items: center;
+  white-space: nowrap;
   padding: 10px 15px;
   text-transform: capitalize;
   cursor: pointer;
@@ -32,6 +33,7 @@
   font-weight: bold;
   background-color: rgba(174, 182, 206, 0.2);
   margin-right: 0;
+  flex-grow: 1;
 }
 
 .iconAction {
