@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { SlPin } from "react-icons/sl";
 import { TiDeleteOutline } from "react-icons/ti";
+import "animate.css";
 import styles from "./Tab.module.scss";
 
 interface TabProps {
@@ -22,7 +23,11 @@ export const Tab = forwardRef<HTMLDivElement, TabProps>(
 				onClick={onClick}
 			>
 				<Icon className={styles.icon} />
-				<span className={styles.label}>{label}</span>
+				{label && (
+					<span className={`${styles.label} animate__animated animate__fadeIn`}>
+						{label}
+					</span>
+				)}
 				{showActionIcon &&
 					(!isPinned ? (
 						<SlPin size={16} className={styles.iconAction} />
