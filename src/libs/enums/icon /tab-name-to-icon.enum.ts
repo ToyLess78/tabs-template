@@ -7,6 +7,7 @@ import {
 	FaHome,
 	FaLayerGroup,
 	FaList,
+	FaMoneyBillWave,
 	FaPhone,
 	FaQuestionCircle,
 	FaShoppingCart,
@@ -18,7 +19,7 @@ import { TabName } from "../enums";
 
 export const TabNameToIcon = {
 	[TabName.DASHBOARD]: FaHome,
-	[TabName.BANKING]: FaChartLine,
+	[TabName.BANKING]: FaMoneyBillWave,
 	[TabName.TELEFONIE]: FaPhone,
 	[TabName.ACCOUNTING]: FaClipboardList,
 	[TabName.VERKAUF]: FaShoppingCart,

@@ -5,7 +5,9 @@ export const Layout: React.FC = () => {
 	return (
 		<>
 			<TabsNavigation />
-			<Outlet />
+			<div style={{ margin: "15px 0", flexGrow: 1, backgroundColor: "white" }}>
+				<Outlet />
+			</div>
 		</>
 	);
 };

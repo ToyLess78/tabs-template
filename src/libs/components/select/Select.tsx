@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Tab } from "../tab/Tab";
+import "animate.css";
 import styles from "./Select.module.scss";
 
 interface SelectProps {
@@ -15,10 +16,16 @@ export const Select: React.FC<SelectProps> = ({
 	pinnedTabs,
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isFullyClosed, setIsFullyClosed] = useState(true);
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
 
 	const toggleDropdown = () => {
-		setIsOpen(!isOpen);
+		setIsOpen((prevState) => {
+			if (!prevState) {
+				setIsFullyClosed(false);
+			}
+			return !prevState;
+		});
 	};
 
 	useEffect(() => {
@@ -38,13 +45,22 @@ export const Select: React.FC<SelectProps> = ({
 		};
 	}, []);
 
+	const handleAnimationEnd = () => {
+		if (!isOpen) {
+			setIsFullyClosed(true);
+		}
+	};
+
 	return (
 		<div ref={dropdownRef} className={styles.dropdownContainer}>
 			<button className={styles.dropdownButton} onClick={toggleDropdown}>
 				{isOpen ? <FaChevronUp /> : <FaChevronDown />}
 			</button>
-			{isOpen && (
-				<div className={styles.dropdownMenu}>
+			{(!isFullyClosed || isOpen) && (
+				<div
+					className={`${styles.dropdownMenu} animate__animated ${isOpen ? "animate__fadeIn" : "animate__fadeOut"}`}
+					onAnimationEnd={handleAnimationEnd}
+				>
 					{options.map((option) => (
 						<Tab
 							key={option.label}

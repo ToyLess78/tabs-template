@@ -7,10 +7,11 @@
   cursor: pointer;
   transition: all 0.5s;
   background-color: rgba(255, 255, 255, 0.87);
+  border: 1px solid  rgba(174, 182, 206, 0.2);
   position: relative;
 
   &:hover {
-    background-color: rgba(174, 182, 206, 0.2);
+    background-color: rgb(240, 245, 250);
 
     .iconAction {
       opacity: 1;
@@ -31,7 +32,7 @@
 .active {
   border-top: 2px solid #007bff;
   font-weight: bold;
-  background-color: rgba(174, 182, 206, 0.2);
+  background-color: rgb(240, 245, 250);
   margin-right: 0;
   flex-grow: 1;
 }

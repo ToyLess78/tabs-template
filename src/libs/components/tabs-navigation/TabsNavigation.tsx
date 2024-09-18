@@ -81,16 +81,18 @@ export const TabsNavigation: React.FC = () => {
 					/>
 				))}
 			</div>
-			<Select
-				options={
-					hiddenTabsOptions as Array<{
-						label: string;
-						Icon?: React.ElementType;
-					}>
-				}
-				onTogglePin={handlePinToggle}
-				pinnedTabs={pinnedTabs}
-			/>
+			{hiddenTabsOptions.length && (
+				<Select
+					options={
+						hiddenTabsOptions as Array<{
+							label: string;
+							Icon?: React.ElementType;
+						}>
+					}
+					onTogglePin={handlePinToggle}
+					pinnedTabs={pinnedTabs}
+				/>
+			)}
 		</div>
 	);
 };

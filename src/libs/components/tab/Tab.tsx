@@ -19,7 +19,7 @@ export const Tab = forwardRef<HTMLDivElement, TabProps>(
 			<div
 				ref={ref}
 				data-label={label}
-				className={`${styles.tab} ${isActive ? styles.active : ""}`}
+				className={`${styles.tab} ${isActive ? styles.active : ""} animate__animated animate__zoomIn`}
 				onClick={onClick}
 			>
 				<Icon className={styles.icon} />
