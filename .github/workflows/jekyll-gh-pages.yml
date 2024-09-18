@@ -44,6 +44,10 @@ jobs:
       - name: Build the project
         run: npm run build
 
+      - name: Create 404.html file
+        run: |
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; URL=./index.html" /></head><body></body></html>' > dist/404.html
+
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
         with:
