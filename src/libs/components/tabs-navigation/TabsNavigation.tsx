@@ -1,65 +1,32 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useNavigate } from "react-router-dom";
-import { AppRoute, TabName, TabNameToIcon } from "../../enums/enums";
-import { useHiddenObserver } from "../../hooks/hooks";
+import { useHiddenObserver, useTabsState } from "../../hooks/hooks";
 import { DraggableTab, Select, Tab } from "../components";
 import styles from "./TabsNavigation.module.scss";
 
 export const TabsNavigation: React.FC = () => {
-	const [activeTab, setActiveTab] = useState<string>(TabName.DASHBOARD);
-	const [pinnedTabs, setPinnedTabs] = useState<string[]>([TabName.DASHBOARD]);
-	const [allTabs, setAllTabs] = useState<string[]>(Object.keys(TabName));
+	const { state, tabs, setActiveTab, togglePinTab, movePinnedTab, moveAllTab } =
+		useTabsState();
 	const navigate = useNavigate();
 	const tabRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
 	const hiddenTabs = useHiddenObserver(tabRefs.current);
 
-	const tabs = allTabs.map((key) => {
-		const tabLabel = TabName[key as keyof typeof TabName];
-		const IconComponent = TabNameToIcon[tabLabel as keyof typeof TabNameToIcon];
-
-		return {
-			label: tabLabel,
-			path: AppRoute[key as keyof typeof AppRoute],
-			Icon: IconComponent,
-		};
-	});
-
-	const pinnedTabsList = tabs.filter((tab) => pinnedTabs.includes(tab.label));
+	const pinnedTabsList = tabs.filter((tab) =>
+		state.pinnedTabs.includes(tab.label),
+	);
 
 	const handleTabClick = (path: string, label: string) => {
 		setActiveTab(label);
 		navigate(path);
 	};
 
-	const handlePinToggle = (label: string) => {
-		setPinnedTabs((prev) =>
-			prev.includes(label)
-				? prev.filter((tab) => tab !== label)
-				: [...prev, label],
-		);
-	};
-
-	const movePinnedTab = (fromIndex: number, toIndex: number) => {
-		const updatedPinnedTabs = Array.from(pinnedTabs);
-		const [movedTab] = updatedPinnedTabs.splice(fromIndex, 1);
-		updatedPinnedTabs.splice(toIndex, 0, movedTab);
-		setPinnedTabs(updatedPinnedTabs);
-	};
-
-	const moveAllTab = (fromIndex: number, toIndex: number) => {
-		const updatedAllTabs = Array.from(allTabs);
-		const [movedTab] = updatedAllTabs.splice(fromIndex, 1);
-		updatedAllTabs.splice(toIndex, 0, movedTab);
-		setAllTabs(updatedAllTabs);
-	};
-
-	const visibleTabs = tabs.filter((tab) => tab.label !== activeTab);
+	const visibleTabs = tabs.filter((tab) => tab.label !== state.activeTab);
 
 	const hiddenTabsOptions = Array.from(hiddenTabs)
-		.filter((label) => label !== activeTab)
+		.filter((label) => label !== state.activeTab)
 		.map((label) => {
 			const tab = tabs.find((tab) => tab.label === label);
 			return tab ? { label: tab.label, Icon: tab.Icon } : null;
@@ -78,9 +45,9 @@ export const TabsNavigation: React.FC = () => {
 							containerType="pinnedTabs"
 							tab={
 								<Tab
-									label={activeTab === tab.label ? tab.label : ""}
+									label={state.activeTab === tab.label ? tab.label : ""}
 									Icon={tab.Icon}
-									isActive={activeTab === tab.label}
+									isActive={state.activeTab === tab.label}
 									onClick={() => handleTabClick(tab.path, tab.label)}
 									isPinned={true}
 									showActionIcon={false}
@@ -101,12 +68,12 @@ export const TabsNavigation: React.FC = () => {
 									label={tab.label}
 									Icon={tab.Icon}
 									isActive={false}
-									onClick={() => handlePinToggle(tab.label)}
+									onClick={() => togglePinTab(tab.label)}
 									ref={(el) => {
 										if (el) tabRefs.current[tab.label] = el;
 									}}
 									data-label={tab.label}
-									isPinned={pinnedTabs.includes(tab.label)}
+									isPinned={state.pinnedTabs.includes(tab.label)}
 									showActionIcon={true}
 								/>
 							}
@@ -121,8 +88,8 @@ export const TabsNavigation: React.FC = () => {
 								Icon?: React.ElementType;
 							}>
 						}
-						onTogglePin={handlePinToggle}
-						pinnedTabs={pinnedTabs}
+						onTogglePin={togglePinTab}
+						pinnedTabs={state.pinnedTabs}
 					/>
 				)}
 			</div>
