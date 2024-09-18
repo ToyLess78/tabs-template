@@ -3,8 +3,14 @@
 	line-height: 1.5;
 	font-weight: 400;
 
-	color: #242424;
-	background-color: rgba(255, 255, 255, 0.87);
+	--color-dark: #242424;
+	--color-primary: rgb(41, 91, 248);
+	--color-light-background: rgba(255, 255, 255, 0.87);
+	--color-border: rgba(174, 182, 206, 0.2);
+	--color-background: rgb(240, 245, 250);
+
+	color: var(--color-dark);
+	background-color: var(--color-light-background);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -19,16 +25,7 @@
 	padding: 0 1rem;
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(240, 245, 250);
-}
-
-a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
-}
-a:hover {
-	color: rgb(41, 91, 248)
+	background-color: var(--color-background);
 }
 
 body {
@@ -46,19 +43,16 @@ h1 {
 
 button {
 	border-radius: 8px;
-	border: 1px solid transparent;
 	padding: 0.6em 1.2em;
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
 	cursor: pointer;
-	transition: border-color 0.25s;
 }
-button:hover {
-	border-color: #646cff;
-}
+
+button:hover,
 button:focus,
 button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+	outline: 4px auto var(--color-primary);
 }
 

@@ -6,12 +6,13 @@
   text-transform: capitalize;
   cursor: pointer;
   transition: all 0.5s;
-  background-color: rgba(255, 255, 255, 0.87);
-  border: 1px solid  rgba(174, 182, 206, 0.2);
+  background-color: var(--color-light-background);
+  border: 1px solid  var(--color-border);
   position: relative;
 
   &:hover {
-    background-color: rgb(240, 245, 250);
+    color: var(--color-dark);
+    background-color: var(--color-background);
 
     .iconAction {
       opacity: 1;
@@ -30,9 +31,10 @@
 }
 
 .active {
-  border-top: 2px solid #007bff;
+  color: var(--color-dark);
+  border-top: 2px solid var(--color-primary);
   font-weight: bold;
-  background-color: rgb(240, 245, 250);
+  background-color: var(--color-background);
   margin-right: 0;
   flex-grow: 1;
 }

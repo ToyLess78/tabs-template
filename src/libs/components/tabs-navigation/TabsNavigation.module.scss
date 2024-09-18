@@ -5,6 +5,11 @@
 
 .pinnedTabsContainer {
   margin-right: 4px;
+  min-width: min-content;
+
+  @media (max-width: 768px) {
+    min-width: auto;
+  }
 }
 
 .pinnedTabsContainer,
@@ -13,7 +18,11 @@
   flex-direction: row;
 }
 
-.tabsNavigation,
+.allTabsContainer {
+  color: gray;
+}
+
+.pinnedTabsContainer,
 .allTabsContainer {
   overflow-x: auto;
   white-space: nowrap;
