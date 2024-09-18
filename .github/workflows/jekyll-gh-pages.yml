@@ -28,6 +28,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Remove existing node_modules and package-lock.json
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
