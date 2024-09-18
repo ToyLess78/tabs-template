@@ -13,12 +13,14 @@
   flex-direction: row;
 }
 
+.tabsNavigation,
 .allTabsContainer {
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
 }
 
+.tabsNavigation::-webkit-scrollbar,
 .allTabsContainer::-webkit-scrollbar {
   display: none;
 }
