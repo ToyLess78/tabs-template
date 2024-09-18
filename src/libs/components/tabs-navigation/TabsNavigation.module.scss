@@ -4,12 +4,16 @@
 }
 
 .pinnedTabsContainer {
-  display: flex;
   margin-right: 4px;
 }
 
+.pinnedTabsContainer,
 .allTabsContainer {
   display: flex;
+  flex-direction: row;
+}
+
+.allTabsContainer {
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
@@ -17,16 +21,4 @@
 
 .allTabsContainer::-webkit-scrollbar {
   display: none;
-}
-
-.tab {
-  display: inline-block;
-  margin-right: 16px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.tab.active {
-  font-weight: bold;
-  border-bottom: 2px solid #007bff;
 }
